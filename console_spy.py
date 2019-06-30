@@ -1,9 +1,14 @@
 import time
 
+oldlog = ""
+
 while True:
 	try:
 		f = open("../../console.log", "r")
-		print(f.read())
+		newlog = f.read()
+		if oldlog != newlog:
+			print(newlog.replace(oldlog, ""), end="", flush=True)
+			oldlog = newlog
 		f.close()
 	except:
 		print("error reading file, retrying")
